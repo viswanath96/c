@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<title>Document</title>
+
+</head>
+<body ng-app="theApp" ng-controller="aCtrl" >
+
+    <div style="margin:{{margin}}px;pdding:{{padding}}px;border:{{border}}px solid gray; width:{{width}}px;background-color:red;" >
+        The box
+    </div>
+    <input type="text" value="{{margin}}" ng-model="margin" >
+    <input type="text" name="" value="{{padding}}" ng-model="padding" >
+    <input type="text" value="{{border}}" ng-model="border" >
+    <input type="text" value="{{width}}" ng-model="width" >
+
+    <input type="text" name="" id="color" style="background-color:{{col}};" value="{{col}}" ng-model="col" >
+    <div>
+        <h1 ng-click="changeText()" >{{text}}</h1>
+    </div>
+    <div>
+        <input type="text" ng-model="val"  >
+        <div>
+            <span ng-click="getVal()" class="btn btn-success">Get Val</span>
+        </div>
+        
+        <p>{{rVal}}</p>
+    </div>
+</body>
+<script>
+    angular.module("theApp",[]).controller('aCtrl',function($scope,$http){
+        $scope.margin = 100;
+        $scope.padding = 50;
+        $scope.border = 10;
+        $scope.width = 500;
+        $scope.col = 'red';
+        $scope.text = 'Hello';
+        $scope.val = 10;
+        $scope.getVal = function(){
+            $http.get("value.php?val="+$scope.val).then(function(response){
+            $scope.rVal = response.data;}
+        )
+        }
+        $scope.theLoop = function()
+        {
+            
+        }
+        $scope.changeText = function(){
+        $scope.text = 'world';
+    }
+    });
+    
+</script>
+</html>
++
